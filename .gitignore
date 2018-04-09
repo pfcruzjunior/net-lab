@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TesteImposto/.vs/TesteImposto/v14
+/TesteImposto/Imposto.Core/bin/Debug
+/TesteImposto/Imposto.Core/obj
+/TesteImposto/TesteImposto/obj
+/TesteImposto/TesteImposto/bin/Debug
+/TesteImposto/Imposto.Test/obj/Debug
+/TesteImposto/Imposto.Test/bin/Debug
+/TesteImposto/Misc

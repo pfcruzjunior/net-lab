@@ -1,14 +1,8 @@
-﻿using Imposto.Core.Service;
+﻿using Imposto.Core.Domain;
+using Imposto.Core.Service;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Imposto.Core.Domain;
 
 namespace TesteImposto
 {
@@ -19,9 +13,12 @@ namespace TesteImposto
         public FormImposto()
         {
             InitializeComponent();
-            dataGridViewPedidos.AutoGenerateColumns = true;                       
+            dataGridViewPedidos.AutoGenerateColumns = true;
             dataGridViewPedidos.DataSource = GetTablePedidos();
             ResizeColumns();
+
+            boxEstadoOrigem.Items.AddRange(GetEstados());
+            boxEstadoDestino.Items.AddRange(GetEstados());
         }
 
         private void ResizeColumns()
@@ -32,7 +29,7 @@ namespace TesteImposto
             {
                 var coluna = dataGridViewPedidos.Columns[i];
                 coluna.Width = Convert.ToInt32(mediaWidth);
-            }   
+            }
         }
 
         private object GetTablePedidos()
@@ -42,15 +39,15 @@ namespace TesteImposto
             table.Columns.Add(new DataColumn("Codigo do produto", typeof(string)));
             table.Columns.Add(new DataColumn("Valor", typeof(decimal)));
             table.Columns.Add(new DataColumn("Brinde", typeof(bool)));
-                     
+
             return table;
         }
 
         private void buttonGerarNotaFiscal_Click(object sender, EventArgs e)
-        {            
+        {
             NotaFiscalService service = new NotaFiscalService();
-            pedido.EstadoOrigem = txtEstadoOrigem.Text;
-            pedido.EstadoDestino = txtEstadoDestino.Text;
+            pedido.EstadoOrigem = boxEstadoOrigem.Text;
+            pedido.EstadoDestino = boxEstadoDestino.Text;
             pedido.NomeCliente = textBoxNomeCliente.Text;
 
             DataTable table = (DataTable)dataGridViewPedidos.DataSource;
@@ -60,15 +57,30 @@ namespace TesteImposto
                 pedido.ItensDoPedido.Add(
                     new PedidoItem()
                     {
-                        Brinde = Convert.ToBoolean(row["Brinde"]),
-                        CodigoProduto =  row["Codigo do produto"].ToString(),
+                        Brinde = string.IsNullOrEmpty(row["Brinde"].ToString()) ? false : Convert.ToBoolean(row["Brinde"]),
+                        CodigoProduto = row["Codigo do produto"].ToString(),
                         NomeProduto = row["Nome do produto"].ToString(),
-                        ValorItemPedido = Convert.ToDouble(row["Valor"].ToString())            
+                        ValorItemPedido = Convert.ToDouble(row["Valor"].ToString())
                     });
             }
 
             service.GerarNotaFiscal(pedido);
+
             MessageBox.Show("Operação efetuada com sucesso");
+
+            //ActiveForm.ResetText();
+            LimparCampos();
+
+        }
+
+        private object[] GetEstados() => new[] { "RJ", "PE", "MG", "PB", "PR", "PI", "RO", "TO", "SE", "PA", "SP" };
+
+        public void LimparCampos()
+        {
+            textBoxNomeCliente.Text = string.Empty;
+            boxEstadoOrigem.SelectedIndex = -1;
+            boxEstadoDestino.SelectedIndex = -1;
+            dataGridViewPedidos.DataSource = GetTablePedidos();
         }
     }
 }

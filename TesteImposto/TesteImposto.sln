@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Express 14 for Web
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteImposto", "TesteImposto\TesteImposto.csproj", "{B477192F-814E-4710-8DBC-244AD89157C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imposto.Core", "Imposto.Core\Imposto.Core.csproj", "{2339C0B3-1E95-4CD3-BFBA-64B377857016}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imposto.Test", "Imposto.Test\Imposto.Test.csproj", "{F20720D4-4939-4FC6-AECE-B181D4F1A884}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2339C0B3-1E95-4CD3-BFBA-64B377857016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2339C0B3-1E95-4CD3-BFBA-64B377857016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2339C0B3-1E95-4CD3-BFBA-64B377857016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20720D4-4939-4FC6-AECE-B181D4F1A884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20720D4-4939-4FC6-AECE-B181D4F1A884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20720D4-4939-4FC6-AECE-B181D4F1A884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20720D4-4939-4FC6-AECE-B181D4F1A884}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
